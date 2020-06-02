@@ -27,13 +27,22 @@ namespace ApiTask.Controllers
 
         // POST: api/Event
         [HttpPost("[action]")]
-        public async Task<IActionResult> CreateEvent([FromForm] UserEvents userEvents)
+        public async Task<IActionResult> CreateEvent([FromForm] UserEvents userEvents, [FromHeader] string authorization)
         {
-            try { 
+            try {
 
-            string apiKey = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+                string apiKey;
 
-            _logger.LogInformation("User with apiKey:{$apiKey} sent this event request:{@userEvents}", apiKey, userEvents);
+            if (authorization == null)
+            {
+                _logger.LogDebug("User with apiKey:{$apiKey} received this event response:{message}", authorization, "Access denied...");
+                return Unauthorized("Access denied...");
+            }
+            else
+            {
+                apiKey = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+               _logger.LogInformation("User with apiKey:{$apiKey} sent this event request:{@userEvents}", apiKey, userEvents);
+            }
 
             if (await _repositoryEvent.ValidateEventId(userEvents) == "EventId already exists")
             {
