@@ -20,6 +20,11 @@ namespace ApiTask.Model
         [Required(ErrorMessage = "Password is required...")]
         public string Password { get; set; }
 
+        [FromForm]
+        [RegularExpression(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", ErrorMessage ="Email format is wrong...")]
+        [Required(ErrorMessage = "Email is required...")]
+        public string Email { get; set; }
+
         [FromHeader]
         [Required(ErrorMessage = "ApiKey is required...")]
         public string ApiKey { get; set; }

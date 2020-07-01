@@ -148,4 +148,5 @@ C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\runtimes\win\lib\
 C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Text.Encoding.CodePages.dll
+C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\SendGrid.dll
 C:\Users\Franklin\source\repos\ApiTask\obj\Debug\netcoreapp3.0\ApiTask.MvcApplicationPartsAssemblyInfo.cache

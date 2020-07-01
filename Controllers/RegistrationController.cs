@@ -27,6 +27,7 @@ namespace ApiTask.Controllers
             {
                 Username = registerUsers.Username,
                 Password = PasswordEncryption.HashPassword(registerUsers.Password),
+                Email = registerUsers.Email,
                 ApiKey = registerUsers.ApiKey,
                 SignupDate = DateTime.Now
             };

@@ -10,5 +10,7 @@ namespace ApiTask.Repository
     {
         Task RegisterUser(RegisterUsers registerUsers);
         Task<bool> ValidateUser(RegisterUsers registerUsers);
+        Task<string> SendPasswordResetLinkEmail(string email, string link);
+        Task<string> ResetUserPassword(ResetPassword resetPassword);
     }
 }

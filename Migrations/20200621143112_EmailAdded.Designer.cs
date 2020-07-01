@@ -4,14 +4,16 @@ using ApiTask.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApiTask.Migrations
 {
     [DbContext(typeof(ApiTaskDBContext))]
-    partial class ApiTaskDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200621143112_EmailAdded")]
+    partial class EmailAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
