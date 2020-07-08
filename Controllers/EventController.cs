@@ -44,15 +44,13 @@ namespace ApiTask.Controllers
                _logger.LogInformation("User with apiKey:{$apiKey} sent this event request:{@userEvents}", apiKey, userEvents);
             }
 
-            if (await _repositoryEvent.ValidateEventId(userEvents) == "EventId already exists")
+            if (await _repositoryEvent.CreateEvent(userEvents) == "EventId already exists")
             {
                 _logger.LogDebug("User with apiKey:{$apiKey} received this event response:{message}", apiKey, "Event belongs to another user...");
                 return BadRequest("Event belongs to another user..."); 
             }
             else
             {
-                await _repositoryEvent.CreateEvent(userEvents);
-
                 _logger.LogInformation("User with apiKey:{$apiKey} received this event response:{message}", apiKey, "Event have been created...");
                 return Ok("Event have been created...");
             }

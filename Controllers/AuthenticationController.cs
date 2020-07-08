@@ -15,49 +15,31 @@ namespace ApiTask.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthenticationService _repositoryAuthenticationService;
-        IRegistration _repositoryRegistration;
         ILogin _repositoryLogin;
 
-        public AuthenticationController(IRegistration repositoryRegistration, ILogin repositoryLogin, IAuthenticationService repositoryAuthenticationService)
+        public AuthenticationController(ILogin repositoryLogin, IAuthenticationService repositoryAuthenticationService)
         {
-            _repositoryRegistration = repositoryRegistration;
             _repositoryLogin = repositoryLogin;
             _repositoryAuthenticationService = repositoryAuthenticationService;
         }
 
         // POST: api/Authentication
         [HttpPost("[action]")]
-        public async Task<IActionResult> LogIn([FromForm] RegisterUsers registerUsers, [FromHeader] string apiKey)
+        public async Task<IActionResult> LogIn(LoginUsers loginUsers)
         {
-            var registerUser = new RegisterUsers
+            
+            if (await _repositoryLogin.LoginUser(loginUsers) == true)
             {
-                Username = registerUsers.Username,
-                Password = PasswordEncryption.HashPassword(registerUsers.Password),
-                ApiKey = registerUsers.ApiKey
-            };
-
-            if (await _repositoryRegistration.ValidateUser(registerUser) == true)
-            {
-                var loginUser = new LoginUsers
-                {
-                    Username = registerUser.Username,
-                    Password = registerUser.Password,
-                    ApiKey = registerUser.ApiKey,
-                    LoginDate = DateTime.Now
-                };
-                await _repositoryLogin.LoginUser(loginUser);
-
-                string token = await _repositoryAuthenticationService.Authenticate(registerUser);
+                string token = await _repositoryAuthenticationService.Authenticate(loginUsers);
                 var formattedToken = FormatToken.FormattedToken(token);
                 return Ok(formattedToken);
             }
             else
             {
-                string token = await _repositoryAuthenticationService.Authenticate(registerUser);
+                string token = await _repositoryAuthenticationService.Authenticate(loginUsers);
                 return NotFound(token);
             }
 
-            
         }
 
         

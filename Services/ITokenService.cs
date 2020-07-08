@@ -9,7 +9,7 @@ namespace ApiTask.Services
 {
     public interface ITokenService
     {
-        string GetToken(RegisterUsers registerUsers);
-        SecurityTokenDescriptor GetTokenDescriptor(RegisterUsers registerUsers);
+        string GetToken(LoginUsers loginUsers);
+        SecurityTokenDescriptor GetTokenDescriptor(LoginUsers loginUsers);
     }
 }

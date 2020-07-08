@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApiTask.Data;
 using ApiTask.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiTask.Repository
 {
@@ -16,10 +17,34 @@ namespace ApiTask.Repository
             _context = context;
         }
 
-        public async Task LoginUser(LoginUsers loginUsers)
+        public async Task<bool> LoginUser(LoginUsers loginUsers)
         {
-            await _context.LoginUser.AddAsync(loginUsers);
-            await _context.SaveChangesAsync();
+            var usercount = await _context.RegisterUser.Where(user => user.Username == loginUsers.Username
+                                                            && user.Password == loginUsers.Password
+                                                            && user.ApiKey == loginUsers.ApiKey)
+                                                       .CountAsync();
+
+            if (usercount > 0)
+            {
+                var loginUser = new LoginUsers
+                {
+                    Username = loginUsers.Username,
+                    Password = loginUsers.Password,
+                    ApiKey = loginUsers.ApiKey,
+                    LoginDate = DateTime.Now
+                };
+
+                await _context.LoginUser.AddAsync(loginUsers);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+            
         }
     }
 }

@@ -20,9 +20,9 @@ namespace ApiTask.Services
             appSettings = options.Value;
         }
 
-        public string GetToken(RegisterUsers registerUsers)
+        public string GetToken(LoginUsers loginUsers)
         {
-            SecurityTokenDescriptor tokenDescriptor = GetTokenDescriptor(registerUsers);
+            SecurityTokenDescriptor tokenDescriptor = GetTokenDescriptor(loginUsers);
             var tokenHandler = new JwtSecurityTokenHandler();
             SecurityToken securityToken = tokenHandler.CreateToken(tokenDescriptor);
             string token = tokenHandler.WriteToken(securityToken);
@@ -30,7 +30,7 @@ namespace ApiTask.Services
             return token;
         }
 
-        public SecurityTokenDescriptor GetTokenDescriptor(RegisterUsers registerUsers)
+        public SecurityTokenDescriptor GetTokenDescriptor(LoginUsers loginUsers)
         {
             const int expiringDays = 7;
 
@@ -41,7 +41,7 @@ namespace ApiTask.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.NameIdentifier, registerUsers.ApiKey)
+                    new Claim(ClaimTypes.NameIdentifier, loginUsers.ApiKey)
                 }),
                 Expires = DateTime.UtcNow.AddDays(expiringDays),
                 SigningCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature)

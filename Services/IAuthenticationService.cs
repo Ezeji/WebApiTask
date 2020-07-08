@@ -8,6 +8,6 @@ namespace ApiTask.Services
 {
     public interface IAuthenticationService
     {
-        Task<string> Authenticate(RegisterUsers registerUsers);
+        Task<string> Authenticate(LoginUsers loginUsers);
     }
 }

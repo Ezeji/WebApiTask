@@ -9,20 +9,20 @@ namespace ApiTask.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private readonly IRegistration _repositoryRegistration;
+        private readonly ILogin _repositoryLogin;
         private readonly ITokenService _repositoryTokenService;
 
-        public AuthenticationService(IRegistration repositoryRegistration, ITokenService repositoryTokenService)
+        public AuthenticationService(ILogin repositoryLogin, ITokenService repositoryTokenService)
         {
-            _repositoryRegistration = repositoryRegistration;
+            _repositoryLogin = repositoryLogin;
             _repositoryTokenService = repositoryTokenService;
         }
 
-        public async Task<string> Authenticate(RegisterUsers registerUsers)
+        public async Task<string> Authenticate(LoginUsers loginUsers)
         {
-            if (await _repositoryRegistration.ValidateUser(registerUsers) == true)
+            if (await _repositoryLogin.LoginUser(loginUsers) == true)
             {
-                string securityToken = _repositoryTokenService.GetToken(registerUsers);
+                string securityToken = _repositoryTokenService.GetToken(loginUsers);
                 return securityToken;
             }
             else

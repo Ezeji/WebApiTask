@@ -8,8 +8,7 @@ namespace ApiTask.Repository
 {
     public interface IRegistration
     {
-        Task RegisterUser(RegisterUsers registerUsers);
-        Task<bool> ValidateUser(RegisterUsers registerUsers);
+        Task<bool> RegisterUser(RegisterUsers registerUsers);
         Task<string> SendPasswordResetLinkEmail(string email, string link);
         Task<string> ResetUserPassword(ResetPassword resetPassword);
     }

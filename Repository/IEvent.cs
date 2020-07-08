@@ -8,7 +8,6 @@ namespace ApiTask.Repository
 {
     public interface IEvent
     {
-        Task CreateEvent(UserEvents userEvents);
-        Task<string> ValidateEventId(UserEvents userEvents);
+        Task<string> CreateEvent(UserEvents userEvents);
     }
 }

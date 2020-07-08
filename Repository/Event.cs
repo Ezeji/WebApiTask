@@ -17,13 +17,7 @@ namespace ApiTask.Repository
             _context = context;
         }
 
-        public async Task CreateEvent(UserEvents userEvents)
-        {
-            await _context.UserEvent.AddAsync(userEvents);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<string> ValidateEventId(UserEvents userEvents)
+        public async Task<string> CreateEvent(UserEvents userEvents)
         {
             var eventcount = await _context.UserEvent
                 .Where(eventId => eventId.EventId == userEvents.EventId)
@@ -35,6 +29,8 @@ namespace ApiTask.Repository
             }
             else
             {
+                await _context.UserEvent.AddAsync(userEvents);
+                await _context.SaveChangesAsync();
                 return "Event Created";
             }
         }

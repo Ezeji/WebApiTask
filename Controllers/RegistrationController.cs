@@ -21,25 +21,16 @@ namespace ApiTask.Controllers
 
         // POST: api/Registration
         [HttpPost("[action]")]
-        public async Task<IActionResult> SignUp([FromForm] RegisterUsers registerUsers, [FromHeader] string apiKey)
+        public async Task<IActionResult> SignUp(RegisterUsers registerUsers)
         {
-            var user = new RegisterUsers
-            {
-                Username = registerUsers.Username,
-                Password = PasswordEncryption.HashPassword(registerUsers.Password),
-                Email = registerUsers.Email,
-                ApiKey = registerUsers.ApiKey,
-                SignupDate = DateTime.Now
-            };
-
-            if (await _repositoryRegistration.ValidateUser(user) == true)
+            if (await _repositoryRegistration.RegisterUser(registerUsers) == true)
             {
                 return BadRequest("User already exists...");
             }
-
-            await _repositoryRegistration.RegisterUser(user);
-            return Ok("Registration was successful...");
-
+            else
+            {
+                return Ok("Registration was successful...");
+            }
         }
 
         

@@ -21,13 +21,7 @@ namespace ApiTask.Repository
             _emailSender = emailSender;
         }
 
-        public async Task RegisterUser(RegisterUsers registerUsers)
-        {
-            await _context.RegisterUser.AddAsync(registerUsers);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<bool> ValidateUser(RegisterUsers registerUsers)
+        public async Task<bool> RegisterUser(RegisterUsers registerUsers)
         {
             var usercount = await _context.RegisterUser.Where(user => user.Username == registerUsers.Username
                                                             && user.Password == registerUsers.Password
@@ -41,6 +35,17 @@ namespace ApiTask.Repository
             }
             else
             {
+                var user = new RegisterUsers
+                {
+                    Username = registerUsers.Username,
+                    Password = PasswordEncryption.HashPassword(registerUsers.Password),
+                    Email = registerUsers.Email,
+                    ApiKey = registerUsers.ApiKey,
+                    SignupDate = DateTime.Now
+                };
+
+                await _context.RegisterUser.AddAsync(user);
+                await _context.SaveChangesAsync();
                 return false;
             }
         }

@@ -8,6 +8,6 @@ namespace ApiTask.Repository
 {
     public interface ILogin
     {
-        Task LoginUser(LoginUsers loginUsers);
+        Task<bool> LoginUser(LoginUsers loginUsers);
     }
 }
