@@ -25,7 +25,7 @@ namespace ApiTask.Controllers
 
         // POST: api/Authentication
         [HttpPost("[action]")]
-        public async Task<IActionResult> LogIn(LoginUsers loginUsers)
+        public async Task<IActionResult> LogIn([FromForm] LoginUsers loginUsers)
         {
             
             if (await _repositoryLogin.LoginUser(loginUsers) == true)

@@ -24,7 +24,7 @@ namespace ApiTask.Repository
         public async Task<bool> RegisterUser(RegisterUsers registerUsers)
         {
             var usercount = await _context.RegisterUser.Where(user => user.Username == registerUsers.Username
-                                                            && user.Password == registerUsers.Password
+                                                            && user.Password == PasswordEncryption.HashPassword(registerUsers.Password)
                                                             && user.ApiKey == registerUsers.ApiKey
                                                             && user.Email == registerUsers.Email)
                                                        .CountAsync();

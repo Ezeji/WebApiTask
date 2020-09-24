@@ -20,7 +20,7 @@ namespace ApiTask.Repository
         public async Task<bool> LoginUser(LoginUsers loginUsers)
         {
             var usercount = await _context.RegisterUser.Where(user => user.Username == loginUsers.Username
-                                                            && user.Password == loginUsers.Password
+                                                            && user.Password == PasswordEncryption.HashPassword(loginUsers.Password)
                                                             && user.ApiKey == loginUsers.ApiKey)
                                                        .CountAsync();
 
@@ -29,12 +29,12 @@ namespace ApiTask.Repository
                 var loginUser = new LoginUsers
                 {
                     Username = loginUsers.Username,
-                    Password = loginUsers.Password,
+                    Password = PasswordEncryption.HashPassword(loginUsers.Password),
                     ApiKey = loginUsers.ApiKey,
                     LoginDate = DateTime.Now
                 };
 
-                await _context.LoginUser.AddAsync(loginUsers);
+                await _context.LoginUser.AddAsync(loginUser);
                 await _context.SaveChangesAsync();
 
                 return true;

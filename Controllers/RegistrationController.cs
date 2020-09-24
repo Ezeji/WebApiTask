@@ -21,7 +21,7 @@ namespace ApiTask.Controllers
 
         // POST: api/Registration
         [HttpPost("[action]")]
-        public async Task<IActionResult> SignUp(RegisterUsers registerUsers)
+        public async Task<IActionResult> SignUp([FromForm] RegisterUsers registerUsers)
         {
             if (await _repositoryRegistration.RegisterUser(registerUsers) == true)
             {

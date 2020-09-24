@@ -134,7 +134,6 @@ C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\nlog.config
 C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\NLog.dll
 C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\NLog.Extensions.Logging.dll
 C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\NLog.Web.AspNetCore.dll
-C:\Users\Franklin\source\repos\ApiTask\obj\Debug\netcoreapp3.0\ApiTask.csprojAssemblyReference.cache
 C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\Microsoft.Win32.Registry.dll
 C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\System.Data.SqlClient.dll
 C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\System.Security.AccessControl.dll
@@ -150,3 +149,6 @@ C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\runtimes\win\lib\
 C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Text.Encoding.CodePages.dll
 C:\Users\Franklin\source\repos\ApiTask\bin\Debug\netcoreapp3.0\SendGrid.dll
 C:\Users\Franklin\source\repos\ApiTask\obj\Debug\netcoreapp3.0\ApiTask.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Franklin\source\repos\ApiTask\obj\Debug\netcoreapp3.0\ApiTask.csproj.CoreCompileInputs.cache
+C:\Users\Franklin\source\repos\ApiTask\obj\Debug\netcoreapp3.0\ApiTask.genruntimeconfig.cache
+C:\Users\Franklin\source\repos\ApiTask\obj\Debug\netcoreapp3.0\ApiTask.csprojAssemblyReference.cache

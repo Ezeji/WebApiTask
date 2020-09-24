@@ -6,12 +6,14 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using ApiTask.Model;
 using ApiTask.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace ApiTask.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class EventController : ControllerBase

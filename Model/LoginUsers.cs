@@ -12,10 +12,13 @@ namespace ApiTask.Model
         [Key]
         public int UserId { get; set; }
 
+        [FromForm]
         public string Username { get; set; }
 
+        [FromForm]
         public string Password { get; set; }
 
+        [FromHeader]
         public string ApiKey { get; set; }
 
         public DateTime LoginDate { get; set; }

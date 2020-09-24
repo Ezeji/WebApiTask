@@ -32,7 +32,7 @@ namespace ApiTask.Services
 
         public SecurityTokenDescriptor GetTokenDescriptor(LoginUsers loginUsers)
         {
-            const int expiringDays = 7;
+            const int tokenExpiration = 2;
 
             byte[] securityKey = Encoding.UTF8.GetBytes(appSettings.EncryptionKey);
             var symmetricSecurityKey = new SymmetricSecurityKey(securityKey);
@@ -43,7 +43,7 @@ namespace ApiTask.Services
                 {
                     new Claim(ClaimTypes.NameIdentifier, loginUsers.ApiKey)
                 }),
-                Expires = DateTime.UtcNow.AddDays(expiringDays),
+                Expires = DateTime.UtcNow.AddMinutes(tokenExpiration),
                 SigningCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature)
             };
 
